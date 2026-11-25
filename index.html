@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Billboard Bag Partners</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0a0a0b;
+    --panel: #141416;
+    --panel-border: #232326;
+    --fg: #f5f5f3;
+    --muted: #9a9a9e;
+    --accent: #de0504;
+    --accent-dim: #8a0303;
+    --field-bg: #1a1a1d;
+  }
+
+  * { box-sizing: border-box; }
+
+  html, body {
+    margin: 0;
+    padding: 0;
+    background: var(--bg);
+    color: var(--fg);
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  }
+
+  body {
+    padding-left: max(16px, env(safe-area-inset-left, 0px));
+    padding-right: max(16px, env(safe-area-inset-right, 0px));
+    padding-block: 48px;
+    min-height: 100vh;
+  }
+
+  .wrap {
+    max-width: 560px;
+    margin: 0 auto;
+  }
+
+  .brand {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 36px;
+    text-align: center;
+  }
+
+  .badge-wrap {
+    position: relative;
+    width: 64px;
+    height: 64px;
+  }
+
+  .chain-ring {
+    position: absolute;
+    inset: -13px;
+    width: 90px;
+    height: 90px;
+    pointer-events: none;
+  }
+
+  .badge {
+    position: relative;
+    width: 64px;
+    height: 64px;
+    border-radius: 14px;
+    background: #000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 8px 24px rgba(222,5,4,0.35);
+    overflow: hidden;
+  }
+
+  .badge img { width: 100%; height: 100%; object-fit: cover; }
+
+  .wordmark {
+    font-family: 'Anton', sans-serif;
+    font-size: 28px;
+    letter-spacing: 1px;
+    line-height: 1;
+    text-transform: uppercase;
+  }
+
+  .wordmark sup {
+    font-size: 12px;
+    font-family: 'Inter', sans-serif;
+    vertical-align: super;
+  }
+
+  .tagline {
+    font-size: 11px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--accent);
+    font-weight: 600;
+  }
+
+  .subline {
+    font-size: 12.5px;
+    color: var(--muted);
+    font-style: italic;
+  }
+
+  h1 {
+    font-family: 'Anton', sans-serif;
+    font-size: 26px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin: 0 0 8px;
+    text-wrap: balance;
+    text-align: center;
+  }
+
+  .sub {
+    color: var(--muted);
+    font-size: 14.5px;
+    line-height: 1.5;
+    text-align: center;
+    margin: 0 0 32px;
+  }
+
+  .card {
+    background: var(--panel);
+    border: 1px solid var(--panel-border);
+    border-radius: 16px;
+    padding: 28px;
+  }
+
+  .field {
+    margin-bottom: 22px;
+  }
+
+  .field:last-of-type { margin-bottom: 0; }
+
+  label {
+    display: block;
+    font-size: 13px;
+    font-weight: 600;
+    margin-bottom: 8px;
+  }
+
+  label .req { color: var(--accent); }
+
+  .hint {
+    color: var(--muted);
+    font-size: 12.5px;
+    margin-top: 6px;
+    line-height: 1.45;
+  }
+
+  input[type="text"],
+  input[type="email"],
+  input[type="url"],
+  select,
+  textarea {
+    width: 100%;
+    background: var(--field-bg);
+    border: 1px solid var(--panel-border);
+    border-radius: 10px;
+    padding: 12px 14px;
+    color: var(--fg);
+    font-family: inherit;
+    font-size: 14.5px;
+    transition: border-color 0.15s ease;
+  }
+
+  select {
+    appearance: none;
+    -webkit-appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%239a9a9e' stroke-width='1.5' fill='none' fill-rule='evenodd'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 14px center;
+    padding-right: 36px;
+  }
+
+  textarea { resize: vertical; min-height: 92px; line-height: 1.5; }
+
+  input:focus, select:focus, textarea:focus {
+    outline: none;
+    border-color: var(--accent);
+  }
+
+  input::placeholder, textarea::placeholder { color: #5f5f63; }
+
+  .field-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+  }
+
+  @media (max-width: 480px) {
+    .field-row { grid-template-columns: 1fr; }
+  }
+
+  .choice-group {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+  }
+
+  @media (max-width: 480px) {
+    .choice-group { grid-template-columns: 1fr; }
+  }
+
+  .choice {
+    position: relative;
+  }
+
+  .choice input {
+    position: absolute;
+    opacity: 0;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    cursor: pointer;
+  }
+
+  .choice-card {
+    display: block;
+    border: 1px solid var(--panel-border);
+    background: var(--field-bg);
+    border-radius: 10px;
+    padding: 14px;
+    font-size: 13.5px;
+    font-weight: 600;
+    line-height: 1.4;
+    height: 100%;
+  }
+
+  .choice-card .label-sub {
+    display: block;
+    font-size: 12px;
+    font-weight: 400;
+    color: var(--muted);
+    margin-top: 4px;
+  }
+
+  .choice input:checked + .choice-card {
+    border-color: var(--accent);
+    background: rgba(222,5,4,0.08);
+  }
+
+  .choice input:focus-visible + .choice-card {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+  }
+
+  button[type="submit"] {
+    width: 100%;
+    margin-top: 28px;
+    background: var(--accent);
+    color: #fff;
+    border: none;
+    border-radius: 10px;
+    padding: 15px;
+    font-size: 14.5px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: background 0.15s ease, transform 0.1s ease;
+  }
+
+  button[type="submit"]:hover { background: #c40404; }
+  button[type="submit"]:active { transform: scale(0.99); }
+
+  button[type="submit"]:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+
+  .footer-note {
+    text-align: center;
+    color: var(--muted);
+    font-size: 12px;
+    margin-top: 24px;
+    line-height: 1.5;
+  }
+
+  .error-note {
+    margin-top: 16px;
+    padding: 12px 14px;
+    border-radius: 10px;
+    background: rgba(222,5,4,0.1);
+    border: 1px solid rgba(222,5,4,0.3);
+    font-size: 13px;
+    line-height: 1.5;
+    color: var(--fg);
+  }
+
+  .error-note[hidden] { display: none !important; }
+
+  .thanks {
+    text-align: center;
+    padding: 12px 0 4px;
+  }
+
+  .thanks-icon {
+    width: 56px;
+    height: 56px;
+    margin: 0 auto 20px;
+    border-radius: 50%;
+    background: rgba(222,5,4,0.12);
+    border: 1px solid rgba(222,5,4,0.35);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .thanks-icon svg { width: 26px; height: 26px; }
+
+  .thanks h2 {
+    font-family: 'Anton', sans-serif;
+    font-size: 22px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin: 0 0 10px;
+  }
+
+  .thanks p {
+    color: var(--muted);
+    font-size: 14px;
+    line-height: 1.6;
+    margin: 0;
+  }
+
+  [hidden] { display: none !important; }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="brand">
+    <div class="badge-wrap">
+      <svg class="chain-ring" viewBox="0 0 90 90" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <linearGradient id="goldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#FCEABB"/>
+            <stop offset="25%" stop-color="#C8960C"/>
+            <stop offset="50%" stop-color="#FFF6D7"/>
+            <stop offset="75%" stop-color="#9A6A08"/>
+            <stop offset="100%" stop-color="#FCEABB"/>
+          </linearGradient>
+        </defs>
+        <rect x="4" y="4" width="82" height="82" rx="23" ry="23" fill="none" stroke="url(#goldGrad)" stroke-width="7" stroke-linecap="round" stroke-dasharray="8 5.5"/>
+      </svg>
+      <div class="badge">
+        <img src="assets/logo-badge.png" alt="Billboard Bag">
+      </div>
+    </div>
+    <div class="wordmark">Billboard Bag<sup>&trade;</sup></div>
+    <div class="tagline">Partner Program</div>
+    <div class="subline">Let's Build Something Together</div>
+  </div>
+
+  <h1>Become A Partner</h1>
+  <p class="sub">Creators, retailers, and venues: tell us how you'd like to work with Billboard Bag and we'll follow up with next steps.</p>
+
+  <div class="card">
+    <form id="partners-form" action="https://formspree.io/f/xbgoqbal" method="POST">
+
+      <input type="hidden" name="_subject" value="New Billboard Bag Partner Inquiry">
+      <input type="text" name="_gotcha" style="display:none" tabindex="-1" autocomplete="off">
+
+      <div class="field">
+        <label for="name">Full Name <span class="req">*</span></label>
+        <input type="text" id="name" name="Full Name" placeholder="Jordan Reese" required>
+      </div>
+
+      <div class="field field-row">
+        <div>
+          <label for="email">Email <span class="req">*</span></label>
+          <input type="email" id="email" name="Email" placeholder="you@email.com" required>
+        </div>
+        <div>
+          <label for="phone">Phone Number</label>
+          <input type="text" id="phone" name="Phone Number" placeholder="(555) 555-5555">
+        </div>
+      </div>
+
+      <div class="field">
+        <label for="link">Social Handle / Website</label>
+        <input type="text" id="link" name="Social Handle or Website" placeholder="@yourhandle or yoursite.com">
+      </div>
+
+      <div class="field">
+        <label>How Would You Like To Partner? <span class="req">*</span></label>
+        <div class="choice-group" role="radiogroup" aria-label="Partnership type">
+          <label class="choice">
+            <input type="radio" name="Partnership Type" value="Affiliate / Referral" id="type-affiliate" required>
+            <span class="choice-card">Affiliate / Referral
+              <span class="label-sub">Earn On Sales You Send Our Way</span>
+            </span>
+          </label>
+          <label class="choice">
+            <input type="radio" name="Partnership Type" value="Content Creator" id="type-creator" required>
+            <span class="choice-card">Content Creator
+              <span class="label-sub">Feature The Bag In Your Content</span>
+            </span>
+          </label>
+          <label class="choice">
+            <input type="radio" name="Partnership Type" value="Retail / Reseller" id="type-retail" required>
+            <span class="choice-card">Retail / Reseller
+              <span class="label-sub">Carry Billboard Bag In Your Store</span>
+            </span>
+          </label>
+          <label class="choice">
+            <input type="radio" name="Partnership Type" value="Event / Venue" id="type-event" required>
+            <span class="choice-card">Event / Venue
+              <span class="label-sub">Feature Us At Your Event Or Space</span>
+            </span>
+          </label>
+        </div>
+      </div>
+
+      <div class="field">
+        <label for="reach">Audience Size / Reach</label>
+        <select id="reach" name="Audience Size">
+          <option value="" disabled selected>Select a range</option>
+          <option value="Under 5K">Under 5K</option>
+          <option value="5K-25K">5K-25K</option>
+          <option value="25K-100K">25K-100K</option>
+          <option value="100K-500K">100K-500K</option>
+          <option value="500K+">500K+</option>
+          <option value="Not applicable">Not applicable</option>
+        </select>
+        <p class="hint">Followers, store foot traffic, event attendance, whatever fits.</p>
+      </div>
+
+      <div class="field">
+        <label for="notes">Tell Us More</label>
+        <textarea id="notes" name="Additional Details" placeholder="What you have in mind, past brand partnerships, store or event details, anything that helps us figure out the right fit."></textarea>
+      </div>
+
+      <button type="submit" id="submit-btn">Submit Application</button>
+
+      <p class="error-note" id="error-note" hidden>
+        Your submission didn't go through. Please try again, or email your details to <strong>thebillboardbag@gmail.com</strong>.
+      </p>
+    </form>
+
+    <div class="thanks" id="thanks-panel" hidden>
+      <div class="thanks-icon">
+        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M5 13l4 4L19 7" stroke="#de0504" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+      <h2>You're In</h2>
+      <p>We've got your partner application. We'll review it and follow up at the email you gave us.</p>
+    </div>
+  </div>
+
+  <p class="footer-note">Questions? Email thebillboardbag@gmail.com.</p>
+
+</div>
+
+<script>
+  (function () {
+    var form = document.getElementById('partners-form');
+    var submitBtn = document.getElementById('submit-btn');
+    var errorNote = document.getElementById('error-note');
+    var thanksPanel = document.getElementById('thanks-panel');
+
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      errorNote.hidden = true;
+      submitBtn.disabled = true;
+      submitBtn.textContent = 'Submitting...';
+
+      fetch(form.action, {
+        method: 'POST',
+        body: new FormData(form),
+        headers: { 'Accept': 'application/json' }
+      }).then(function (response) {
+        if (response.ok) {
+          form.hidden = true;
+          thanksPanel.hidden = false;
+        } else {
+          throw new Error('Submission failed');
+        }
+      }).catch(function () {
+        errorNote.hidden = false;
+        submitBtn.disabled = false;
+        submitBtn.textContent = 'Submit Application';
+      });
+    });
+  })();
+</script>
+
+</body>
+</html>
