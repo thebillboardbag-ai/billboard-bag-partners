@@ -398,8 +398,8 @@
     <div class="subline">Let's Build Something Together</div>
   </div>
 
-  <h1>Become A Partner</h1>
-  <p class="sub">Creators, retailers, and venues: tell us how you'd like to work with Billboard Bag and we'll follow up with next steps.</p>
+  <h1>Welcome, Partner</h1>
+  <p class="sub">You're in. Fill out your details below so we can lock in the partnership and get your bag on its way.</p>
 
   <div class="card">
     <form id="partners-form" action="https://formspree.io/f/xbgoqbal" method="POST">
@@ -429,7 +429,7 @@
       </div>
 
       <div class="field">
-        <label>How Would You Like To Partner? <span class="req">*</span></label>
+        <label>Confirm Your Partnership Type <span class="req">*</span></label>
         <div class="choice-group" role="radiogroup" aria-label="Partnership type">
           <label class="choice">
             <input type="radio" name="Partnership Type" value="Affiliate / Referral" id="type-affiliate" required>
@@ -474,7 +474,7 @@
 
       <div class="field">
         <label for="notes">Tell Us More</label>
-        <textarea id="notes" name="Additional Details" placeholder="What you have in mind, past brand partnerships, store or event details, anything that helps us figure out the right fit."></textarea>
+        <textarea id="notes" name="Additional Details" placeholder="Anything else we should know, shipping notes, store or event details, timing."></textarea>
       </div>
 
       <div class="field">
@@ -494,7 +494,7 @@
         </div>
       </div>
 
-      <button type="submit" id="submit-btn">Submit Application</button>
+      <button type="submit" id="submit-btn">Submit My Details</button>
 
       <p class="error-note" id="error-note" hidden>
         Your submission didn't go through. Please try again, or email your details to <strong>thebillboardbag@gmail.com</strong>.
@@ -508,7 +508,7 @@
         </svg>
       </div>
       <h2>You're In</h2>
-      <p>We've got your partner application. We'll review it and follow up at the email you gave us.</p>
+      <p>We've got your details. We'll get your bag shipped out and follow up at the email you gave us.</p>
     </div>
   </div>
 
@@ -543,7 +543,7 @@
       }).catch(function () {
         errorNote.hidden = false;
         submitBtn.disabled = false;
-        submitBtn.textContent = 'Submit Application';
+        submitBtn.textContent = 'Submit My Details';
       });
     });
   })();
